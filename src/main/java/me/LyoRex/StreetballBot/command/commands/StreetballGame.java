@@ -158,7 +158,7 @@ public class StreetballGame implements ICommand
         // Find player that was mentioned to go against
         for(Member m : members)
         {
-            if(arg.equalsIgnoreCase(m.getAsMention()))
+            if(arg.equalsIgnoreCase(m.getAsMention()) || arg.equals(m.getAsMention().replace("!","")))
             {
                 // make sure player being challenged isn't already being challenged
                 // and they aren't already in a game
@@ -205,7 +205,7 @@ public class StreetballGame implements ICommand
         player1.set(guildIndex, ctx.getMember());
         if(player2.get(guildIndex) == player1.get(guildIndex))
         {
-            textChannel.sendMessage("You can't challenege yourself").queue();
+            textChannel.sendMessage("You can't challenge yourself").queue();
             resetGame(guildIndex);
             return;
         }
